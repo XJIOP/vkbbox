@@ -53,7 +53,6 @@ def searchList(VKsearch):
 
     if current_token == "config" or current_token == "authorize":
         mc.HideDialogWait()
-        mc.LogInfo("current_token:"+str(current_token))  
         return current_token    
     
     quality = ["240p", "360p", "480p", "720p"]
@@ -82,8 +81,6 @@ def getLink(url):
     
     this = getURL(url)
     goToPlay = max(0, min(int(config.GetValue("uMaxPlayQ")), len(this)-1))
-    
-    mc.LogInfo("getLink:"+str(this[goToPlay][1])+"|"+str(config.GetValue("uMaxPlayQ"))+"|"+str(this))
     
     mc.HideDialogWait()
     return [this[goToPlay][1], this[goToPlay][0]]    
