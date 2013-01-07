@@ -39,7 +39,6 @@ def getAccess():
         current = vkaa.auth(uEmail, uPassword, app_id, scope)
         if current != "authorize":
             config.SetValue("VKaceess", json.dumps(current))
-            mc.LogInfo("VKaceess:"+str(current))
     else:
         current = "config"
   
