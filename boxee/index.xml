@@ -6,6 +6,7 @@
 		<description>Video Search the social network VKontakte</description>
 		<thumb>http://vkbbox.googlecode.com/svn/trunk/boxee/icon.png</thumb>
 		<repository>http://vkbbox.googlecode.com/svn/trunk/boxee</repository>
+      <repositoryid>com.vkbbox.googlecode</repositoryid>
 		<media>video</media>
 		<copyright>XJIOP</copyright>
 		<email>xjiopka@gmail.com</email>
