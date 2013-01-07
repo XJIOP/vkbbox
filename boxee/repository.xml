@@ -1,0 +1,7 @@
+<repository>
+	<id>vkbbox</id>
+	<url>http://vkbbox.googlecode.com/svn/trunk/boxee</url>
+	<name>VK BBox</name>
+	<thumb>http://vkbbox.googlecode.com/svn/trunk/boxee/icon.png</thumb>
+	<description>Video Search the social network VKontakte</description>
+</repository>

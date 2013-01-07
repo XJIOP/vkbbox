@@ -1,0 +1,17 @@
+<apps>
+	<app>
+  		<id>vkbbox</id>
+		<name>VK BBox</name>
+		<version>0.8</version>
+		<description>Video Search the social network VKontakte</description>
+		<thumb>http://vkbbox.googlecode.com/svn/trunk/boxee/icon.png</thumb>
+		<repository>http://vkbbox.googlecode.com/svn/trunk/boxee</repository>
+		<media>video</media>
+		<copyright>XJIOP</copyright>
+		<email>xjiopka@gmail.com</email>
+		<type>skin</type>
+		<startWindow>start</startWindow>
+		<platform>all</platform>
+		<minversion>0.8</minversion>
+	</app>
+</apps>

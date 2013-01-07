@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<window type="dialog" id="14001">
+	<defaultcontrol always="true">297</defaultcontrol>
+	<allowoverlay>no</allowoverlay>
+	<onload lang="python"><![CDATA[
+
+import xbmc
+
+config = mc.GetApp().GetLocalConfig()
+uEmail = config.GetValue("uEmail")
+uPassword = config.GetValue("uPassword")
+uMaxPlayQ = config.GetValue("uMaxPlayQ")
+
+if not len(uMaxPlayQ):
+    uMaxPlayQ = 3
+
+qText = "Качество воспроизведения "
+qName = ["360p", "480p", "720p"]
+
+thisWindow = mc.GetWindow(14001)
+
+thisWindow.GetButton(297).SetLabel(qText+qName[int(uMaxPlayQ)-1])
+
+if uEmail:
+    thisWindow.GetEdit(298).SetText(uEmail)
+if uPassword:
+    thisWindow.GetEdit(299).SetText(uPassword)
+
+]]>
+	</onload>
+
+	<controls>
+		<control type="group" id="7001">
+
+			<posx>440</posx>
+            <posy>210</posy>
+
+ 			<control type="image">
+				<width>410</width>
+				<height>220</height>
+				<texture>ba_overlay6.png</texture>
+				<colordiffuse>DD202020</colordiffuse>
+			</control>
+
+		<control type="group" id="7002">
+
+			<posx>15</posx>
+            <posy>15</posy>
+
+			<!-- выбор качества воспроизведения -->
+            <control type="button" id="297">
+            	<width>380</width>
+                <height>40</height>
+
+				<ondown>298</ondown>
+
+                <label></label>
+                <font>font21b</font>
+                <align>left</align>
+                <textoffsety>5</textoffsety>
+                <textoffsetx>10</textoffsetx>
+                <aligny>bottom</aligny>
+                <textcolor>ffbdbdbd</textcolor>
+                <focusedcolor>ffffffff</focusedcolor>
+                <texturefocus>ba_overlay3.png</texturefocus>
+                <texturenofocus>ba_overlay2.png</texturenofocus>
+                <onclick lang="python">
+<![CDATA[
+
+selection = mc.ShowDialogSelect("Please Choose", ["360p", "480p", "720p"])
+if selection >= 0:
+    thisWindow.GetButton(297).SetLabel(qText+qName[selection])
+    qAdd = selection+1
+
+]]>
+				</onclick>
+            </control>
+
+ 			<!-- емайл -->
+			<control type="edit" id="298">
+		   		<posy>50</posy>
+		   		<width>380</width>
+   				<height>40</height>
+                <label>Е-майл</label>
+				<textoffsetx>10</textoffsetx>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font21b</font>
+				<textcolor>ffbdbdbd</textcolor>
+				<focusedcolor>ffffffff</focusedcolor>
+				<texturefocus>ba_overlay3.png</texturefocus>
+				<texturenofocus>ba_overlay2.png</texturenofocus>
+			</control>
+
+			<!-- пароль -->
+			<control type="edit" id="299">
+				<posy>100</posy>
+		   		<width>380</width>
+   				<height>40</height>
+                
+                <ondown>301</ondown>
+                
+                <label>Пароль</label>
+				<textoffsetx>10</textoffsetx>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font21b</font>
+				<textcolor>ffbdbdbd</textcolor>
+				<focusedcolor>ffffffff</focusedcolor>
+				<texturefocus>ba_overlay3.png</texturefocus>
+				<texturenofocus>ba_overlay2.png</texturenofocus>
+				<password>true</password>
+			</control>
+
+             <!-- кнопка сохранить -->
+             <control type="button" id="301">
+				<posy>150</posy>
+             	<width>185</width>
+                <height>40</height>
+
+                <onup>299</onup>
+				<onright>302</onright>
+
+                <label>Сохранить</label>
+                <font>font21b</font>
+                <align>center</align>
+                <textoffsety>5</textoffsety>
+                <aligny>bottom</aligny>
+                <textcolor>ffbdbdbd</textcolor>
+                <focusedcolor>ffffffff</focusedcolor>
+                <texturefocus>ba_overlay3.png</texturefocus>
+                <texturenofocus>ba_overlay2.png</texturenofocus>
+                <onclick lang="python">
+<![CDATA[
+
+clear_token = False
+
+setEmail = thisWindow.GetEdit(298).GetText()
+if uEmail != setEmail:
+    config.SetValue("uEmail", setEmail)
+    clear_token = True
+
+setPassword = thisWindow.GetEdit(299).GetText()
+if uPassword != setPassword:
+    config.SetValue("uPassword", setPassword)
+    clear_token = True
+
+try:
+    newQuality = str(qAdd)
+except:
+    newQuality = ""
+
+if newQuality:
+    config.SetValue("uMaxPlayQ", newQuality)
+
+if clear_token == True:
+    config.Reset("VKaceess")
+
+mc.ShowDialogNotification("Настройки сохранены.")
+xbmc.executebuiltin("Dialog.Close(14001)")
+
+]]>
+				</onclick>
+			</control>
+
+             <!-- кнопка отменить -->
+             <control type="button" id="302">
+				<posy>150</posy>
+				<posx>195</posx>
+             	<width>185</width>
+                <height>40</height>
+
+                <onup>299</onup>
+				<onleft>301</onleft>
+
+                <label>Отменить</label>
+                <font>font21b</font>
+                <align>center</align>
+                <textoffsety>5</textoffsety>
+                <aligny>bottom</aligny>
+                <textcolor>ffbdbdbd</textcolor>
+                <focusedcolor>ffffffff</focusedcolor>
+                <texturefocus>ba_overlay3.png</texturefocus>
+                <texturenofocus>ba_overlay2.png</texturenofocus>
+                <onclick lang="python">
+<![CDATA[
+
+xbmc.executebuiltin("Dialog.Close(14001)")
+
+]]>
+				</onclick>
+			</control>
+
+      	</control>
+		</control>
+
+	 </controls>
+</window>

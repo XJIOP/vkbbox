@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<window type="window" id="14000">
+   <defaultcontrol always="true">9001</defaultcontrol>
+   <allowoverlay>no</allowoverlay>
+
+   <controls>
+
+         <animation type="WindowOpen">
+            <effect type="fade" start="0" end="100" time="200" />
+         </animation>
+
+         <control type="image">
+            <width>1280</width>
+            <height>720</height>
+            <texture>ba_background.png</texture>
+         </control>
+
+		<control type="image">
+			<width>1280</width>
+			<height>70</height>
+			<texture>ba_overlay.png</texture>
+		</control>
+
+         <!-- верхняя часть -->
+         <control type="group" id="200">
+             <posy>15</posy>
+             <posx>15</posx>
+             <ondown>120</ondown>
+             <itemgap>3</itemgap>
+             <orientation>horizontal</orientation>
+             <defaultcontrol>9001</defaultcontrol>
+
+			<!-- строка поиска -->
+			<control type="edit" id="9001">
+		   		<width>326</width>
+   				<height>40</height>
+
+			   	<onright>9002</onright>
+				<onnext>9002</onnext>
+				<ondown>201</ondown>
+
+				<textoffsetx>4</textoffsetx>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font21b</font>
+				<textcolor>ffbdbdbd</textcolor>
+				<focusedcolor>ffffffff</focusedcolor>
+				<texturefocus>ba_overlay3.png</texturefocus>
+				<texturenofocus>ba_overlay2.png</texturenofocus>
+			</control>
+             <!-- кнопка искать -->
+             <control type="button" id="9002">
+				<posx>330</posx>
+             	<width>100</width>
+                <height>40</height>
+
+   				<onleft>9001</onleft>
+   				<onright>9003</onright>
+				<onprev>9001</onprev>
+				<onnext>9003</onnext>
+				<ondown>201</ondown>
+
+                <label>найти</label>
+                <font>font21b</font>
+                <align>center</align>
+                <textoffsety>5</textoffsety>
+                <aligny>top</aligny>
+                <textcolor>ffbdbdbd</textcolor>
+                <focusedcolor>ffffffff</focusedcolor>
+                <texturefocus>ba_overlay3.png</texturefocus>
+                <texturenofocus>ba_overlay2.png</texturenofocus>
+                <onclick lang="python">
+<![CDATA[
+
+from search import searchList
+sText = mc.GetActiveWindow().GetEdit(9001).GetText()
+
+if len(sText) > 2 and len(sText) < 30:
+	poisk = searchList(sText)
+	if poisk == "config":
+		mc.ShowDialogNotification("Укажите настройки.")
+	elif poisk == "authorize":
+		mc.ShowDialogNotification("Проблема с авторизацией. Проверьте настройки.")
+	else:
+		mc.GetActiveWindow().GetList(120).SetItems(poisk)
+		
+]]>
+				</onclick>
+			</control>
+
+             <!-- кнопка настроек -->
+             <control type="button" id="9003">
+				<posx>1100</posx>
+             	<width>150</width>
+                <height>40</height>
+
+   				<onleft>9002</onleft>
+				<onprev>9002</onprev>
+				<ondown>201</ondown>
+
+                <label>Настройки</label>
+                <font>font21b</font>
+                <align>center</align>
+                <textoffsety>5</textoffsety>
+                <aligny>top</aligny>
+                <textcolor>ffbdbdbd</textcolor>
+                <focusedcolor>ffffffff</focusedcolor>
+                <texturefocus>ba_overlay3.png</texturefocus>
+                <texturenofocus>ba_overlay2.png</texturenofocus>
+                <onclick lang="python">
+<![CDATA[
+
+mc.ActivateWindow(14001)
+
+]]>
+			 	</onclick>
+			 </control>
+
+       </control>
+
+         <!-- нижняя часть -->
+         <control type="group" id="201">
+
+            <defaultcontrol>120</defaultcontrol>
+
+            <!-- черный бордюр сверху -->
+            <control type="image">
+               <posy>70</posy>
+               <width>1280</width>
+               <height>3</height>
+               <texture>black.png</texture>
+            </control>
+
+            <!-- список видео -->
+            <control type="list" id="120">
+               	<posy>70</posy>
+                <width>1280</width>
+                <height>680</height>
+                <scrolltime>200</scrolltime>
+                <orientation>vertical</orientation>
+
+   				<onleft>200</onleft>
+				<onright>200</onright>
+				<onup>9001</onup>
+				<onprev>200</onprev>
+				<onnext>200</onnext>
+
+				<!-- обычная ссылка -->
+				<itemlayout width="1280" height="150">
+
+            		<!-- черный бордюр сверху -->
+            		<control type="image">
+               			<posy>0</posy>
+               			<width>1280</width>
+               			<height>3</height>
+               			<texture>black.png</texture>
+            		</control>
+
+					<!-- скрин -->
+					<control type="image">
+						<posy>3</posy>
+						<posx>0</posx>
+						<width>320</width>
+						<height>147</height>
+						<texture>$INFO[ListItem.Thumb]</texture>
+						<aspectratio>scale</aspectratio>
+					</control>
+					<!-- слой под время -->
+					<control type="image">
+						<posy>121</posy>
+						<posx>254</posx>
+						<width>60</width>
+						<height>25</height>
+						<texture>ba_overlay4.png</texture>
+					</control>
+					<!-- время -->
+					<control type="label">
+						<posy>124</posy>
+						<posx>305</posx>
+						<width>60</width>
+						<height>20</height>
+						<font>font12</font>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.property(custom:vtime)]</label>
+						<textcolor>white</textcolor>
+						<scroll>true</scroll>
+					</control>
+					<!-- заголовок -->
+					<control type="label">
+						<posy>10</posy>
+						<posx>330</posx>
+						<width>940</width>
+						<height>40</height>
+						<font>font24</font>
+						<align>left</align>
+						<aligny>top</aligny>
+						<label>[B]$INFO[ListItem.Label][/B]</label>
+						<textcolor>white</textcolor>
+						<scroll>true</scroll>
+					</control>
+					<!-- описание -->
+					<control type="label">
+						<posy>40</posy>
+						<posx>330</posx>
+						<width>940</width>
+						<height>110</height>
+						<font>font16</font>
+						<align>left</align>
+						<aligny>top</aligny>
+						<label>$INFO[ListItem.property(description)]</label>
+						<textcolor>white</textcolor>
+						<wrapmultiline>true</wrapmultiline>
+						<scroll>true</scroll>
+					</control>
+				</itemlayout>
+
+				<!-- фокус ссылки -->
+				<focusedlayout width="950" height="150">
+
+            		<!-- черный бордюр сверху -->
+            		<control type="image">
+               			<posy>0</posy>
+               			<width>1280</width>
+               			<height>3</height>
+               			<texture>black.png</texture>
+            		</control>
+
+					<!-- скрин -->
+					<control type="image">
+						<posy>3</posy>
+						<posx>0</posx>
+						<width>320</width>
+						<height>147</height>
+						<texture>$INFO[ListItem.Thumb]</texture>
+						<aspectratio>scale</aspectratio>
+					</control>
+					<!-- слой под время -->
+					<control type="image">
+						<posy>121</posy>
+						<posx>254</posx>
+						<width>60</width>
+						<height>25</height>
+						<texture>ba_overlay4.png</texture>
+					</control>
+					<!-- время -->
+					<control type="label">
+						<posy>124</posy>
+						<posx>305</posx>
+						<width>60</width>
+						<height>20</height>
+						<font>font12</font>
+						<align>right</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.property(custom:vtime)]</label>
+						<textcolor>white</textcolor>
+						<scroll>true</scroll>
+					</control>
+					<!-- оверлей ссылки -->
+					<control type="image">
+						<posy>3</posy>
+						<posx>320</posx>
+						<width>960</width>
+						<height>150</height>
+						<texture>ba_overlay4.png</texture>
+					</control>
+					<!-- заголовок -->
+					<control type="label">
+						<posy>10</posy>
+						<posx>330</posx>
+						<width>940</width>
+						<height>40</height>
+						<font>font24</font>
+						<align>left</align>
+						<aligny>top</aligny>
+						<label>[B]$INFO[ListItem.Label][/B]</label>
+						<textcolor>white</textcolor>
+						<scroll>true</scroll>
+					</control>
+					<!-- описание -->
+					<control type="label">
+						<posy>40</posy>
+						<posx>330</posx>
+						<width>940</width>
+						<height>110</height>
+						<font>font16</font>
+						<align>left</align>
+						<aligny>top</aligny>
+						<label>$INFO[ListItem.property(description)]</label>
+						<textcolor>white</textcolor>
+						<wrapmultiline>true</wrapmultiline>
+						<scroll>true</scroll>
+					</control>
+				</focusedlayout>
+
+                <!-- контент -->
+               <content type="action">
+
+<onclick lang="python"><![CDATA[
+
+list = mc.GetActiveWindow().GetList(120)
+item = list.GetItem(list.GetFocusedItem())
+vtime = item.GetProperty("vtime")
+drect = item.GetProperty("drect")
+
+if drect == "no":
+    from search import getLink
+    dLink = getLink(item.GetPath())
+    item.SetPath(str(dLink[0]))
+    item.SetProperty("drect", "yes")
+    item.SetProperty("vq", str(dLink[1]))
+
+confirm = mc.ShowDialogConfirm(item.GetLabel(), 'Максимальное качество: ['+item.GetProperty("vq")+']\nПродолжительность: '+vtime, 'Отмена', 'Воспроизвести')
+
+if confirm:
+    mc.ShowDialogNotification("Загружаю видео...")
+    mc.GetPlayer().Play(item)
+
+]]></onclick>
+
+               </content>
+            </control>
+
+         </control>
+
+   </controls>
+</window>
