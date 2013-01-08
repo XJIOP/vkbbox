@@ -1,5 +1,5 @@
 <repository>
-	<id>com.vkbbox.googlecode.vkbbox</id>
+	<id>com.vkbbox.googlecode</id>
    <url>http://vkbbox.googlecode.com/svn/trunk/boxee/</url>
 	<name>VK BBox</name>
 	<thumb>http://vkbbox.googlecode.com/svn/trunk/boxee/icon.png</thumb>
