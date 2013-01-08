@@ -1,10 +1,11 @@
 <app>
-  <id>vkbbox</id>
+  <id>com.vkbbox.googlecode.vkbbox</id>
   <name>VK BBox</name>
-  <version>0.8</version>
+  <version>0.83</version>
   <description>Video Search the social network VKontakte</description>
   <thumb>http://vkbbox.googlecode.com/svn/trunk/boxee/icon.png</thumb>
   <repository>http://vkbbox.googlecode.com/svn/trunk/boxee</repository>
+  <repositoryid>com.vkbbox.googlecode</repositoryid>
   <media>video</media>
   <copyright>XJIOP</copyright>
   <email>xjiopka@gmail.com</email>
