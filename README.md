@@ -10,11 +10,11 @@
 * Выбираем Софт
 * В боковой панели снизу выбираем Репозитории 
 * Жмем добавить репозиторий
-* Вводим адрес репозитория: https://github.com/Hakyp/vkbbox/tree/master/source 
+* Вводим адрес репозитория: https://github.com/XJIOP/vkbbox/tree/master/source 
 * Выбираем приложение VK BBox и устанавливаем
 * Переходим по ссылке *->* http://goo.gl/cVlp0 и разрешаем доступ приложению
 * Заходим в установленное приложение VK BBox
 * Идем в > Настройки > вводим логин и пароль от ВК
 * Наслаждаемся просмотром...
 
-[Скриншот 1](https://github.com/Hakyp/vkbbox/blob/master/screenshots/screen-2.jpg) | [Скриншот 2](https://github.com/Hakyp/vkbbox/blob/master/screenshots/screen-2.jpg) | [Скриншот 3](https://github.com/Hakyp/vkbbox/blob/master/screenshots/screen-3.jpg)
+[Скриншот 1](https://github.com/XJIOP/vkbbox/blob/master/screenshots/screen-2.jpg) | [Скриншот 2](https://github.com/XJIOP/vkbbox/blob/master/screenshots/screen-2.jpg) | [Скриншот 3](https://github.com/XJIOP/vkbbox/blob/master/screenshots/screen-3.jpg)
